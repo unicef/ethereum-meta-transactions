@@ -1,21 +1,13 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { useWeb3React } from '@web3-react/core'
 import { Web3Provider } from '@ethersproject/providers'
 import ERC20ABI from '../abi/ERC20.abi.json'
-import { Networks, shorter, TOKENS_BY_NETWORK } from '../utils'
+import { shorter, TOKENS_BY_NETWORK } from '../utils'
 import {EthSWRConfig} from 'ether-swr'
-import { InjectedConnector } from '@web3-react/injected-connector'
 import {EthBalance} from "./EthBalance";
+import {injectedConnector, networkConnector} from "../connectors";
 
-export const injectedConnector = new InjectedConnector({
-  supportedChainIds: [
-    Networks.MainNet, // Mainet
-    Networks.Ropsten, // Ropsten
-    Networks.Rinkeby, // Rinkeby
-    Networks.Goerli, // Goerli
-    Networks.Kovan, // Kovan
-  ],
-})
+
 
 export const ABIs = (chainId: number) => {
   const matrix = TOKENS_BY_NETWORK[chainId]
@@ -29,12 +21,21 @@ export const ABIs = (chainId: number) => {
 export const Wallet = () => {
   const { chainId, account, library, activate, active } = useWeb3React<
       Web3Provider
-      >()
-
+      >();
+    const [balance, setBalance] = useState(0);
+    const [buttonClicked, setButtonClicked] = useState(false);
   const onClick = () => {
-    activate(injectedConnector)
-  }
+    activate(injectedConnector);
+    setButtonClicked(true);
+  };
+  console.log(balance);
+  if(balance<0){
+      return (
+          <div>
 
+          </div>
+      )
+  }
   return (
       <div>
         <div>ChainId: {chainId}</div>
@@ -52,9 +53,17 @@ export const Wallet = () => {
             <EthSWRConfig
                 value={{ web3Provider: library, ABIs: new Map(ABIs(chainId)) }}
             >
-              <EthBalance />
+              <EthBalance balance={setBalance}/>
+                {balance<=0 && (
+                    <div>No balance</div> // where to call the meta transaction component
+                )
+                }
             </EthSWRConfig>
         )}
+        {!active && buttonClicked && (
+            <div>No injected connector</div> // where to call the meta transaction component
+        )
+        }
       </div>
   )
 }
