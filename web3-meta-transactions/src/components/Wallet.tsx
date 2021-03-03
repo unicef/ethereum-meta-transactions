@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {Children, useState} from 'react'
 import { useWeb3React } from '@web3-react/core'
 import { Web3Provider } from '@ethersproject/providers'
 import ERC20ABI from '../abi/ERC20.abi.json'
@@ -18,24 +18,26 @@ export const ABIs = (chainId: number) => {
   )
 }
 
-export const Wallet = () => {
-  const { chainId, account, library, activate, active } = useWeb3React<
+export const Wallet = (props: any) => {
+  const { connector, chainId, account, library, activate, active} = useWeb3React<
       Web3Provider
       >();
     const [balance, setBalance] = useState(0);
-    const [buttonClicked, setButtonClicked] = useState(false);
   const onClick = () => {
-    activate(injectedConnector);
-    setButtonClicked(true);
+    activate(injectedConnector, (error => activate(networkConnector)));
   };
-  console.log(balance);
-  if(balance<0){
-      return (
-          <div>
 
-          </div>
-      )
-  }
+  React.useEffect(() => {
+     if (active) {
+         console.log(connector);
+     }
+  }, [active, connector]);
+
+  React.useEffect(() => {
+      if (balance && balance<=0){
+          activate(networkConnector);
+      }
+  }, [balance])
   return (
       <div>
         <div>ChainId: {chainId}</div>
@@ -52,18 +54,18 @@ export const Wallet = () => {
         {active && chainId && (
             <EthSWRConfig
                 value={{ web3Provider: library, ABIs: new Map(ABIs(chainId)) }}
-            >
-              <EthBalance balance={setBalance}/>
-                {balance<=0 && (
-                    <div>No balance</div> // where to call the meta transaction component
-                )
-                }
+            >{ connector === injectedConnector && (
+                <EthBalance balance={setBalance}/>
+            )
+            }
+                {/* This where the business related components will be added. The call of the contract will be eventually done
+                    depending on the connector (if network, the process of meta transactions will be called)
+                */}
+            <div>{props.children}</div>
+
             </EthSWRConfig>
         )}
-        {!active && buttonClicked && (
-            <div>No injected connector</div> // where to call the meta transaction component
-        )
-        }
+
       </div>
   )
 }

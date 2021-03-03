@@ -13,7 +13,8 @@ function getLibrary(provider: any): Web3Provider {
 export const App = () => {
   return (
       <Web3ReactProvider getLibrary={getLibrary}>
-        <Wallet />
+          <Wallet>
+          </Wallet>
       </Web3ReactProvider>
   )
 }
