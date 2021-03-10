@@ -1,6 +1,9 @@
 import AdditionContract from "../abi/Addition.json"
 import SetAContract from "../abi/SetA.json"
 import {BigNumber} from "ethers";
+import {useContext} from "react";
+import MetaTxContext from "../context/MetaTxContext";
+import {Wallet} from "@ethersproject/wallet";
 
 export const Networks = {
   MainNet: 1,
@@ -55,8 +58,9 @@ export const additionContract = {
   abi: AdditionContract.abi
 }
 
-export const execute = async (contract: any, methodToExecute: string, paramsToPass:any=null) => {
-  const tx = await eval("contract.methodToExecute(paramsToPass)");
+export const execute = async (functionToExecute: any, paramsToPass:any=null, account: any) => {
+  // const wallet = new Wallet(account);
+  const tx = await functionToExecute(paramsToPass);
   console.log(tx);
   if (BigNumber.isBigNumber(tx)) {
     return tx.toString();

@@ -5,6 +5,7 @@ import { shorter} from '../utils'
 import {EthSWRConfig} from 'ether-swr'
 import {EthBalance} from "./EthBalance";
 import {injectedConnector, networkConnector} from "../connectors";
+import MetaTxContext from "../context/MetaTxContext";
 import {HDNode} from "ethers/lib/utils";
 
 export const ABIs = (contracts: any, chainId: number) => { return contracts.map((contract: any) => { return [contract.address,contract.abi]})}
@@ -18,9 +19,16 @@ export const Wallet = (props: any) => {
     // const provider = new Web3Provider(HDWallet, );
     console.log(account);
     const [balance, setBalance] = useState(0);
+    const [signingAccount, setSigningAccount] = useState(null);
+    const [isMetaMask, setIsMetaMask] = useState(false);
     const onClick = () => {
         activate(injectedConnector, (error => activate(networkConnector)));
     };
+
+    const setContext = (account:any, isMetaMask: boolean) => {
+        setSigningAccount(account);
+        setIsMetaMask(isMetaMask);
+    }
 
     React.useEffect(() => {
         if (active) {
@@ -30,9 +38,10 @@ export const Wallet = (props: any) => {
 
     React.useEffect(() => {
         if (balance && balance<=0){
+            setContext(account,true);
             activate(networkConnector);
         }
-    }, [balance])
+    }, [balance,activate])
     return (
         <div>
             <div>ChainId: {chainId}</div>
@@ -56,7 +65,14 @@ export const Wallet = (props: any) => {
                     {/* This where the business related components will be added. The call of the contract will be eventually done
                     depending on the connector (if network, the process of meta transactions will be called)
                 */}
+                <MetaTxContext.Provider
+                    value={{
+                        signingAccount,
+                        isMetaMask
+                    }}
+                >
                     <div>{props.children}</div>
+                </MetaTxContext.Provider>
 
                 </EthSWRConfig>
             )}
