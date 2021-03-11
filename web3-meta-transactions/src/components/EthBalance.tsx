@@ -6,7 +6,6 @@ import useEthSWR from "ether-swr";
 
 export const EthBalance = (props: any) => {
   const { account } = useWeb3React<Web3Provider>()
-  console.log(account);
   const { data: balance, mutate } = useEthSWR(
       ['getBalance', account, 'latest'],
       {

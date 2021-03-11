@@ -1,9 +1,13 @@
 import AdditionContract from "../abi/Addition.json"
 import SetAContract from "../abi/SetA.json"
+import VerifierContract from "../abi/Verifier.json"
 import {BigNumber} from "ethers";
 import {useContext} from "react";
 import MetaTxContext from "../context/MetaTxContext";
-import {Wallet} from "@ethersproject/wallet";
+import {verifyMessage, Wallet} from "@ethersproject/wallet";
+import {Signer, Verify} from "crypto";
+import {Contract} from "@ethersproject/contracts";
+import {arrayify, keccak256, solidityKeccak256, toUtf8Bytes} from "ethers/lib/utils";
 
 export const Networks = {
   MainNet: 1,
@@ -58,13 +62,44 @@ export const additionContract = {
   abi: AdditionContract.abi
 }
 
-export const execute = async (functionToExecute: any, paramsToPass:any=null, account: any) => {
-  // const wallet = new Wallet(account);
-  const tx = await functionToExecute(paramsToPass);
-  console.log(tx);
-  if (BigNumber.isBigNumber(tx)) {
-    return tx.toString();
+export const verifierContract = {
+  address: "0xd157E3560c1f6421d328c967e2A93514EEC9c958",
+  abi: VerifierContract.abi
+}
+
+
+export const execute = async (account: any, wallet: Wallet, functionToExecute: any, paramsToPass: any=null) => {
+  if (account) {
+    let signature;
+    const signer = new Wallet(account);
+    console.log(functionToExecute)
+    let msgHash = solidityKeccak256 (
+        ['string'],
+        [""]);
+    if (paramsToPass){
+      msgHash = solidityKeccak256 (
+          ['string'],
+          paramsToPass.toString());
+    }
+    const msgHash_binary = arrayify(msgHash);
+    signature = await signer.signMessage(msgHash_binary);
+    const recoveredAccount = verifyMessage(msgHash_binary, signature);
+    console.log("test");
+    console.log(recoveredAccount);
+    console.log(signature);
+    const contract = new Contract(verifierContract.address,verifierContract.abi,wallet);
+    const isSigned = await contract.isSigned(account,msgHash,signature);
+    console.log(isSigned)
+    if (isSigned){
+      const tx = await functionToExecute(paramsToPass);
+      console.log(tx);
+      if (BigNumber.isBigNumber(tx)) {
+        return tx.toString();
+      }
+      else return tx;
+    }
+    return "not correctly signed"
   }
-  else return tx;
+  return "no account";
 };
 

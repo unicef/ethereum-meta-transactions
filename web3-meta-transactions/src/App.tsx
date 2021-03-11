@@ -19,7 +19,6 @@ export const GetA = () => {
 
     // interacting with smart contract using ethers
     const contract = new Contract(setAContract.address,setAContract.abi,wallet);
-    console.log(contract);
     // const getA = async (contract: any) => {
     //     const tx = await execute(contract.getA);
     //     console.log(tx);
