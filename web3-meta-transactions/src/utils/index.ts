@@ -70,7 +70,7 @@ export const verifierContract = {
 }
 
 export const verifierV2Contract = {
-  address: "0x72fE3417C1be91b06CEFDF10cF7cFc54f494ABFf",
+  address: "0x1b4DCdA8839767D9fa69DdE8b809B002695ec047",
   abi: VerifierV2Contract.abi
 }
 
@@ -89,24 +89,23 @@ export const execute = async (account: string, library: Web3Provider, wallet: Wa
     console.log("PayloadHash:", payloadHash);
     let signature = await signer.signMessage(arrayify(payloadHash));
     let sig = splitSignature(signature);
-    const recoveredAccount = verifyMessage(arrayify(payloadHash), sig);
-    console.log("test");
-    console.log("recovered account", recoveredAccount);
-    console.log("signer account", account);
-    // const contract = new Contract(verifierV2Contract.address,verifierV2Contract.abi,wallet);
+    // const recoveredAccount = verifyMessage(arrayify(payloadHash), sig);
+    // console.log("test");
+    // console.log("recovered account", recoveredAccount);
+    // console.log("signer account", account);
+    const contract = new Contract(verifierV2Contract.address,verifierV2Contract.abi,wallet);
     // const recoverAddr = await contract.recoverAddr(someHash,sig.v,sig.r,sig.s);
     // console.log("test 2");
-    // console.log(recoverAddr)
-    if (recoveredAccount === account)
-      return "correctly signed"
-    // if (isSigned){
-    //   const tx = await functionToExecute(paramsToPass);
-    //   console.log(tx);
-    //   if (BigNumber.isBigNumber(tx)) {
-    //     return tx.toString();
-    //   }
-    //   else return tx;
-    // }
+    // console.log("recovered address with contract", recoverAddr)
+    const isSigned = await contract.isSigned(account,someHash,sig.v,sig.r,sig.s);
+    if (isSigned){
+      const tx = await functionToExecute(paramsToPass);
+      console.log(tx);
+      if (BigNumber.isBigNumber(tx)) {
+        return tx.toString();
+      }
+      else return tx;
+    }
     return "not correctly signed"
   }
   return "no account";

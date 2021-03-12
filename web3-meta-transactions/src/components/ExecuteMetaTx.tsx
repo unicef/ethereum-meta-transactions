@@ -7,8 +7,10 @@ import {InfuraProvider} from "@ethersproject/providers";
 
 export const ExecuteMetaTx = (props: any) => {
     const {library, account} = useWeb3React();
-    const provider = new  InfuraProvider("rinkeby", process.env.REACT_APP_rinkeby_key as string)
-    const wallet = new Wallet(process.env.REACT_APP_rinkeby_key as string,provider)
+    const provider = new  InfuraProvider("rinkeby", process.env.REACT_APP_RPC_API_KEY_4 as string)
+    console.log("provider", provider);
+    const wallet = new Wallet(process.env.REACT_APP_rinkeby_key as string, provider)
+    console.log("wallet", wallet);
     // const {signingAccount} = useContext(MetaTxContext);
     // console.log("signingAccount")
     // console.log(signingAccount);
