@@ -37,9 +37,8 @@ export const Wallet = (props: any) => {
     React.useEffect(() => {
         if (balance && balance<=0){
             setContext(account,true);
-            activate(networkConnector);
         }
-    }, [account,balance,activate])
+    }, [account,balance])
     return (
         <div>
             <div>ChainId: {chainId}</div>
@@ -72,7 +71,7 @@ export const Wallet = (props: any) => {
                     {/* This where the business related components will be added. The call of the contract will be eventually done
                     depending on the connector (if network, the process of meta transactions will be called)
                 */}
-                    { connector === networkConnector && (
+                    { (connector === networkConnector || balance <= 0) && (
                         <MetaTxContext.Provider
                             value={{
                                 signingAccount,
