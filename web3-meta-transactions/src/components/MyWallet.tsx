@@ -1,18 +1,23 @@
 import React, {useState} from 'react'
 import { useWeb3React } from '@web3-react/core'
-import { Web3Provider } from '@ethersproject/providers'
+import {JsonRpcProvider, Web3Provider} from '@ethersproject/providers'
 import { shorter} from '../utils'
 import {EthSWRConfig} from 'ether-swr'
 import {EthBalance} from "./EthBalance";
 import {injectedConnector, networkConnector} from "../connectors";
 import MetaTxContext from "../context/MetaTxContext";
+import {Wallet} from "@ethersproject/wallet";
 
 export const ABIs = (contracts: any, chainId: number) => { return contracts.map((contract: any) => { return [contract.address,contract.abi]})}
 
-export const Wallet = (props: any) => {
+export const MyWallet = (props: any) => {
     const { connector, chainId, account, activate, active, library} = useWeb3React<
         Web3Provider
         >();
+    const provider = new JsonRpcProvider(props.provider);
+    console.log("provider", provider);
+    const wallet = new Wallet(props.privateKey, provider);
+    console.log("wallet", wallet);
     // const HDWallet = HDNode.fromMnemonic(process.env.REACT_APP_mnemonic as string, process.env.REACT_APP_RPC_URL_4 as string);
     // console.log(HDWallet);
     // const provider = new Web3Provider(HDWallet, );
@@ -39,6 +44,8 @@ export const Wallet = (props: any) => {
             setContext(account,true);
         }
     }, [account,balance])
+    // @ts-ignore
+    // @ts-ignore
     return (
         <div>
             <div>ChainId: {chainId}</div>
@@ -60,7 +67,8 @@ export const Wallet = (props: any) => {
                         <MetaTxContext.Provider
                             value={{
                                 signingAccount,
-                                isMetaMask
+                                isMetaMask,
+                                wallet
                             }}
                         >
                             <div>{props.children}</div>
@@ -75,7 +83,8 @@ export const Wallet = (props: any) => {
                         <MetaTxContext.Provider
                             value={{
                                 signingAccount,
-                                isMetaMask
+                                isMetaMask,
+                                wallet
                             }}
                         >
                             <div>{props.children}</div>

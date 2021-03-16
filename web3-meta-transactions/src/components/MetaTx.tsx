@@ -1,6 +1,6 @@
 import {Web3Provider} from "@ethersproject/providers";
 import {Web3ReactProvider} from "@web3-react/core";
-import {Wallet} from "./Wallet";
+import {MyWallet} from "./MyWallet";
 import React from "react";
 
 function getLibrary(provider: any): Web3Provider {
@@ -12,9 +12,9 @@ function getLibrary(provider: any): Web3Provider {
 export const MetaTx = (props: any) => {
     return (
         <Web3ReactProvider getLibrary={getLibrary}>
-            <Wallet contracts={props.contracts}>
+            <MyWallet privateKey={props.privateKey} provider={props.provider} contracts={props.contracts}>
                 {props.children}
-            </Wallet>
+            </MyWallet>
         </Web3ReactProvider>
     )
 }

@@ -84,7 +84,7 @@ export const SetA = () => {
 
 export const App = () => {
     return (
-        <MetaTx contracts={[additionContract, setAContract]}>
+        <MetaTx privateKey={process.env.REACT_APP_rinkeby_key as string} provider={process.env.REACT_APP_RPC_URL_4 as string} contracts={[additionContract, setAContract]}>
             <GetA/>
             <SetA/>
         </MetaTx>
