@@ -65,7 +65,7 @@ export const additionContract = {
 }
 
 export const verifierContract = {
-  address: "0xd157E3560c1f6421d328c967e2A93514EEC9c958",
+  address: "0x25ce36BD0DFE8764975eB26C5ce5465F9F370c4A",
   abi: VerifierContract.abi
 }
 
