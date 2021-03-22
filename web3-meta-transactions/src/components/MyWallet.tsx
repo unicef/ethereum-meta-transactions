@@ -44,8 +44,7 @@ export const MyWallet = (props: any) => {
             setContext(account,true);
         }
     }, [account,balance])
-    // @ts-ignore
-    // @ts-ignore
+
     return (
         <div>
             <div>ChainId: {chainId}</div>
