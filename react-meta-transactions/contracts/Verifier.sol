@@ -1,10 +1,10 @@
-pragma solidity >=0.4.22 <0.9.0;
+pragma solidity >=0.6.8 <0.9.0;
 
 // this Verifier contract was heavily inspired by https://github.com/austintgriffith/bouncer-proxy/blob/master/BouncerProxy/BouncerProxy.sol
 
 contract Verifier {
     //whitelist the deployer so they can whitelist others
-    constructor() public {
+    constructor() {
         whitelist[msg.sender] = true;
     }
     //to avoid replay
@@ -38,7 +38,7 @@ contract Verifier {
         //make sure the signer pays in whatever token (or ether) the sender and signer agreed to
         // or skip this if the sender is incentivized in other ways and there is no need for a token
         //execute the transaction with all the given parameters
-        require(executeCall(destination, value, data));
+        require(executeCall(destination, value, data), "Verifier::problem in executeCall");
         emit Forwarded(sig, signer, destination, value, data, _hash);
     }
     // when some frontends see that a tx is made from a bouncerproxy, they may want to parse through these events to find out who the signer was etc
@@ -49,7 +49,7 @@ contract Verifier {
     // https://github.com/gnosis/gnosis-safe-contracts/blob/master/contracts/GnosisSafe.sol
     function executeCall(address to, uint256 value, bytes memory data) internal returns (bool success) {
         assembly {
-            success := call(gas, to, value, add(data, 0x20), mload(data), 0, 0)
+            success := call(gas(), to, value, add(data, 0x20), mload(data), 0, 0)
         }
     }
 
