@@ -79,7 +79,7 @@ export const execute = async (account: string, library: Web3Provider, wallet: Wa
   if (signer) {
     const verifier = new Contract(verifierContract.address,verifierContract.abi,wallet);
     // let signature;
-    const nonce = await verifier.nonce(wallet.address);
+    const nonce = await verifier.nonce(account);
     const parts = [
       verifierContract.address,
       account,
@@ -87,11 +87,11 @@ export const execute = async (account: string, library: Web3Provider, wallet: Wa
       0,
       data,
       nonce
-    ]
+    ];
     let payloadHash = solidityKeccak256([ "address", "address", "address", "uint", "bytes", "uint"], parts);
     console.log("PayloadHash:", payloadHash);
-    // const hashFromContract = await contract.getHash(account, contract.address, 0, data);
-    // console.log("hashFromContract", hashFromContract)
+    const hashFromContract = await verifier.getHash(account, contract.address, 0, data);
+    console.log("hashFromContract", hashFromContract)
     const signature = await signer.signMessage(arrayify(payloadHash));
     console.log("signature", signature);
     // const sig = splitSignature(signature);
