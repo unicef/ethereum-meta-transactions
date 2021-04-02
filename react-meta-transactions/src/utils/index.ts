@@ -2,11 +2,10 @@ import AdditionContract from "../abi/Addition.json"
 import SetAContract from "../abi/SetA.json"
 import VerifierContract from "../abi/Verifier.json"
 import VerifierV2Contract from "../abi/VerifierV2.json"
-import {BigNumber, utils} from "ethers";
+import {BigNumber, Signer, utils} from "ethers";
 import {useContext} from "react";
 import MetaTxContext from "../context/MetaTxContext";
 import {verifyMessage, Wallet} from "@ethersproject/wallet";
-import {Signer, Verify} from "crypto";
 import {Contract} from "@ethersproject/contracts";
 import {arrayify, defaultAbiCoder, keccak256, solidityKeccak256, splitSignature, toUtf8Bytes} from "ethers/lib/utils";
 import {Web3Provider} from "@ethersproject/providers";
@@ -74,11 +73,12 @@ export const verifierV2Contract = {
   abi: VerifierV2Contract.abi
 }
 
-export const execute = async (account: string, library: Web3Provider, wallet: Wallet,contract: any, data: string) => {
-  const signer = library.getSigner();
-  if (signer) {
+export const execute = async (signer: Signer, wallet: Wallet,contract: any, method: string, params: any[]) => {
+  const contractInterface = new utils.Interface(contract.abi);
+  const data = contractInterface.encodeFunctionData(method,params);
+  console.log("data", data);
+  const account = await signer.getAddress();
     const verifier = new Contract(verifierContract.address,verifierContract.abi,wallet);
-    // let signature;
     const nonce = await verifier.nonce(account);
     const parts = [
       verifierContract.address,
@@ -121,7 +121,5 @@ export const execute = async (account: string, library: Web3Provider, wallet: Wa
     //   }
     //   else return tx;
     // }
-  }
-  return "no account";
 };
 

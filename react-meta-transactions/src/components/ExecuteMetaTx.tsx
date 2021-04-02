@@ -8,7 +8,7 @@ import {Contract} from "@ethersproject/contracts";
 import {utils} from "ethers";
 
 export const ExecuteMetaTx = (props: any) => {
-    const {library, account} = useWeb3React();
+    const {library} = useWeb3React();
     const {wallet} = useContext(MetaTxContext);
     // interacting with smart contract using ethers
     // const provider = new  InfuraProvider("rinkeby", process.env.REACT_APP_RPC_API_KEY_4 as string)
@@ -20,12 +20,10 @@ export const ExecuteMetaTx = (props: any) => {
     // const {signingAccount} = useContext(MetaTxContext);
     // console.log("signingAccount")
     // console.log(signingAccount);
-    const contractInterface = new utils.Interface(props.contract.abi);
     const executeTx = async () => {
-        if (account){
-            const data = contractInterface.encodeFunctionData(props.method, props.params);
-            console.log("data", data);
-            const tx = await execute(account, library, wallet, props.contract, data);
+        const signer = library.getSigner();
+        if (signer){
+            const tx = await execute(signer, wallet, props.contract, props.method, props.params);
             console.log(tx);
             props.result(tx);
             console.log(tx);
