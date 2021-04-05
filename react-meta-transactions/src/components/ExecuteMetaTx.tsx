@@ -1,10 +1,10 @@
 import React, {useContext} from "react";
 import MetaTxContext from "../context/MetaTxContext";
-import {execute} from "../utils";
+import {execute, verifierContract} from "../utils";
 import {useWeb3React} from "@web3-react/core";
 import {Wallet} from "@ethersproject/wallet";
 import {InfuraProvider, JsonRpcProvider} from "@ethersproject/providers";
-import {Contract} from "@ethersproject/contracts";
+import {Contract} from "ethers";
 import {utils} from "ethers";
 
 export const ExecuteMetaTx = (props: any) => {
@@ -23,7 +23,9 @@ export const ExecuteMetaTx = (props: any) => {
     const executeTx = async () => {
         const signer = library.getSigner();
         if (signer){
-            const tx = await execute(signer, wallet, props.contract, props.method, props.params);
+            const contractInterface = new Contract(props.contract.address,props.contract.abi);
+            const verifier = new Contract(verifierContract.address,verifierContract.abi,wallet);
+            const tx = await execute(verifier, signer, wallet, contractInterface, props.method, props.params);
             console.log(tx);
             props.result(tx);
             console.log(tx);

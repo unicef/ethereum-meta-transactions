@@ -132,9 +132,9 @@ export const executeTx = async (safe: Contract, safeTx: SafeTransaction, signatu
     return safe.execTransaction(safeTx.to, safeTx.value, safeTx.data, safeTx.operation, safeTx.safeTxGas, safeTx.baseGas, safeTx.gasPrice, safeTx.gasToken, safeTx.refundReceiver, signatureBytes, overrides || {})
 }
 
-export const executeMetaTx = async (signer: Signer, safe: Contract, safeTx: SafeTransaction, signatures: SafeSignature[], overrides?: any): Promise<any> => {
+export const executeMetaTx = async (verifier: Contract, signer: Signer, relayer:Wallet, safe: Contract, safeTx: SafeTransaction, signatures: SafeSignature[], overrides?: any): Promise<any> => {
     const signatureBytes = buildSignatureBytes(signatures);
-    return execute(signer, getMetaWallet(),safe ,"execTransaction",[safeTx.to, safeTx.value, safeTx.data, safeTx.operation, safeTx.safeTxGas, safeTx.baseGas, safeTx.gasPrice, safeTx.gasToken, safeTx.refundReceiver, signatureBytes, overrides || {}])
+    return execute(verifier, signer, relayer, safe ,"execTransaction",[safeTx.to, safeTx.value, safeTx.data, safeTx.operation, safeTx.safeTxGas, safeTx.baseGas, safeTx.gasPrice, safeTx.gasToken, safeTx.refundReceiver, signatureBytes])
 }
 
 export const buildContractCall = (contract: Contract, method: string, params: any[], nonce: number, delegateCall?: boolean, overrides?: Partial<SafeTransaction>): SafeTransaction => {
@@ -152,9 +152,9 @@ export const executeTxWithSigners = async (safe: Contract, tx: SafeTransaction, 
     return executeTx(safe, tx, sigs, overrides)
 }
 
-export const executeMetaTxWithSigners = async (signer:Signer, safe: Contract, tx: SafeTransaction, signers: Wallet[], overrides?: any) => {
+export const executeMetaTxWithSigners = async (verifier: Contract, signer:Signer, relayer: Wallet, safe: Contract, tx: SafeTransaction, signers: Wallet[], overrides?: any) => {
     const sigs = await Promise.all(signers.map((signer) => safeSignTypedData(signer, safe, tx)))
-    return executeMetaTx(signer, safe, tx, sigs, overrides)
+    return executeMetaTx(verifier, signer,relayer, safe, tx, sigs, overrides)
 }
 
 export const executeContractCallWithSigners = async (safe: Contract, contract: Contract, method: string, params: any[], signers: Wallet[], delegateCall?: boolean, overrides?: Partial<SafeTransaction>) => {
@@ -162,9 +162,9 @@ export const executeContractCallWithSigners = async (safe: Contract, contract: C
     return executeTxWithSigners(safe, tx, signers)
 }
 
-export const executeMetaContractCallWithSigners = async (signer: Signer, safe: Contract, contract: Contract, method: string, params: any[], signers: Wallet[], delegateCall?: boolean, overrides?: Partial<SafeTransaction>) => {
+export const executeMetaContractCallWithSigners = async (verifier: Contract, signer: Signer, relayer:Wallet, safe: Contract, contract: Contract, method: string, params: any[], signers: Wallet[], delegateCall?: boolean, overrides?: Partial<SafeTransaction>) => {
     const tx = buildContractCall(contract, method, params, await safe.nonce(), delegateCall, overrides)
-    return executeMetaTxWithSigners(signer, safe, tx, signers)
+    return executeMetaTxWithSigners(verifier, signer, relayer, safe, tx, signers)
 }
 
 export const buildSafeTransaction = (template: {
