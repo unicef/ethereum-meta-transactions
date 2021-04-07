@@ -1,5 +1,7 @@
 pragma solidity >=0.6.8 <0.9.0;
 
+import "hardhat/console.sol";
+
 // this Verifier contract was heavily inspired by https://github.com/austintgriffith/bouncer-proxy/blob/master/BouncerProxy/BouncerProxy.sol
 
 contract Verifier {
@@ -38,6 +40,7 @@ contract Verifier {
         //make sure the signer pays in whatever token (or ether) the sender and signer agreed to
         // or skip this if the sender is incentivized in other ways and there is no need for a token
         //execute the transaction with all the given parameters
+        // console.log("tx.origin: %s", tx.origin);
         require(executeCall(destination, value, data), "Verifier::problem in executeCall");
         emit Forwarded(sig, signer, destination, value, data, _hash);
     }

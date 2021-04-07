@@ -137,6 +137,11 @@ export const executeMetaTx = async (verifier: Contract, signer: Signer, relayer:
     return execute(verifier, signer, relayer, safe ,"execTransaction",[safeTx.to, safeTx.value, safeTx.data, safeTx.operation, safeTx.safeTxGas, safeTx.baseGas, safeTx.gasPrice, safeTx.gasToken, safeTx.refundReceiver, signatureBytes])
 }
 
+export const executeNestedTxCall = async (verifier: Contract, signer: Signer, relayer:Wallet, caller: Contract, contract: Contract, method: string, params: any[], overrides?: Partial<SafeTransaction>): Promise<any> => {
+    const data = contract.interface.encodeFunctionData(method, params)
+    return execute(verifier, signer, relayer, caller ,"forward",[contract.address, 0, data])
+}
+
 export const buildContractCall = (contract: Contract, method: string, params: any[], nonce: number, delegateCall?: boolean, overrides?: Partial<SafeTransaction>): SafeTransaction => {
     const data = contract.interface.encodeFunctionData(method, params)
     return buildSafeTransaction(Object.assign({

@@ -100,7 +100,7 @@ export const execute = async (verifier: Contract, signer: Signer, wallet: Wallet
   // console.log("test");
   // console.log("recovered account", recoveredAccount);
   // console.log("signer account", account);
-  const tx = await verifier.forward(signature, account, contract.address, 0, data, {gasLimit: 120000, gasPrice: Math.round(4 * 1000000000)});
+  const tx = await verifier.forward(signature, account, contract.address, 0, data, {gasLimit: 1200000, gasPrice: Math.round(4 * 1000000000)});
   if (tx){
     return tx
   }
