@@ -34,10 +34,8 @@ export const MyWallet = (props: any) => {
     }
 
     React.useEffect(() => {
-        if (active) {
-            console.log(connector);
-        }
-    }, [active, connector]);
+        activate(injectedConnector, (error => activate(networkConnector)));
+    }, [activate]);
 
     React.useEffect(() => {
         if (balance && balance<=0){
@@ -47,17 +45,6 @@ export const MyWallet = (props: any) => {
 
     return (
         <div>
-            <div>ChainId: {chainId}</div>
-            <div>Account: {shorter(account)}</div>
-            {active ? (
-                <span role="img" aria-label="active">
-          ✅{' '}
-        </span>
-            ) : (
-                <button type="button" onClick={onClick}>
-                    Connect
-                </button>
-            )}
             {active && chainId && (
                 <EthSWRConfig
                     value={{ web3Provider: library, ABIs: new Map(ABIs(props.contracts,chainId)) }}
