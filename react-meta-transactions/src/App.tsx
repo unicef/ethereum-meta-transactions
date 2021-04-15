@@ -1,13 +1,10 @@
 import './App.css';
 import React, {useContext, useEffect, useState} from 'react'
 import {MetaTx} from "./components/MetaTx";
-import {Wallet} from "@ethersproject/wallet"
-import useEthSWR from "ether-swr";
 import {useWeb3React} from "@web3-react/core";
 import {Contract} from "@ethersproject/contracts";
-import {additionContract, setAContract, verifierContract} from "./utils";
+import {setAContract} from "./utils";
 import {ExecuteMetaTx} from "./components/ExecuteMetaTx";
-import {TransactionResponse} from "@ethersproject/providers";
 
 require("dotenv").config();
 
@@ -80,7 +77,7 @@ export const SetA = () => {
 
 export const App = () => {
     return (
-        <MetaTx privateKey={process.env.REACT_APP_rinkeby_key as string} provider={process.env.REACT_APP_RPC_URL_4 as string} contracts={[additionContract, setAContract]}>
+        <MetaTx privateKey={process.env.REACT_APP_rinkeby_key as string} provider={process.env.REACT_APP_RPC_URL_4 as string} contracts={[setAContract]}>
             <GetA/>
             <SetA/>
         </MetaTx>

@@ -11,11 +11,9 @@ import {
     calculateSafeTransactionHash,
     buildContractCall,
     executeMetaContractCallWithSigners, executeNestedTxCall
-} from "../src/utils/multiSig";
+} from "../utils/multiSig";
 import { parseEther } from "@ethersproject/units";
 import { chainId } from "./utils/encoding";
-import {verifierContract} from "../src/utils";
-import {safeContractUnderTest} from "./utils/config";
 
 describe("GnosisSafe", async () => {
 

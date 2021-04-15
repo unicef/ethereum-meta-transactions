@@ -1,7 +1,5 @@
-import AdditionContract from "../abi/Addition.json"
 import SetAContract from "../abi/SetA.json"
 import VerifierContract from "../abi/Verifier.json"
-import VerifierV2Contract from "../abi/VerifierV2.json"
 import {BigNumber, Signer, utils} from "ethers";
 import {useContext} from "react";
 import MetaTxContext from "../context/MetaTxContext";
@@ -58,26 +56,16 @@ export const setAContract = {
   address: "0x8a0dA59972F9E80d84B9add4EBF08Ec9c759F3b2",
   abi: SetAContract.abi
 }
-export const additionContract = {
-  address: "0x9e72c3472Ad3C227F72F68be491541EFe75664Be",
-  abi: AdditionContract.abi
-}
 
 export const verifierContract = {
   address: "0xd416Daf08d9F50B5274864F572b551Ef8076868C",
   abi: VerifierContract.abi
 }
 
-export const verifierV2Contract = {
-  address: "0x1b4DCdA8839767D9fa69DdE8b809B002695ec047",
-  abi: VerifierV2Contract.abi
-}
 
 export const execute = async (verifier: Contract, signer: Signer, wallet: Wallet, contract: Contract, method: string, params: any[]) => {
   const data = contract.interface.encodeFunctionData(method,params);
-  console.log("data", data);
   const account = await signer.getAddress();
-  console.log("account", account);
   // pass verifier as param and make it use the relayer wallet in test
   const nonce = await verifier.nonce(account);
   const parts = [
@@ -89,11 +77,8 @@ export const execute = async (verifier: Contract, signer: Signer, wallet: Wallet
     nonce
   ];
   let payloadHash = solidityKeccak256([ "address", "address", "address", "uint", "bytes", "uint"], parts);
-  console.log("PayloadHash:", payloadHash);
-  const hashFromContract = await verifier.getHash(account, contract.address, 0, data);
-  console.log("hashFromContract", hashFromContract)
+  // const hashFromContract = await verifier.getHash(account, contract.address, 0, data);
   const signature = await signer.signMessage(arrayify(payloadHash));
-  console.log("signature", signature);
   // const sig = splitSignature(signature);
   // console.log("signature", sig);
   // const recoveredAccount = verifyMessage(arrayify(payloadHash), sig);

@@ -1,6 +1,6 @@
 import {Contract, Wallet, utils, BigNumber, BigNumberish, Signer} from "ethers"
 import { AddressZero } from "@ethersproject/constants";
-import {execute} from "./index";
+import {execute} from "../../../src/utils";
 import {JsonRpcProvider} from "@ethersproject/providers";
 
 export const EIP_DOMAIN = {

@@ -12,7 +12,6 @@ import "./common/SecuredTokenTransfer.sol";
 import "./common/StorageAccessible.sol";
 import "./interfaces/ISignatureValidator.sol";
 import "./external/GnosisSafeMath.sol";
-import "hardhat/console.sol";
 
 /// @title Gnosis Safe - A multisignature wallet with support for confirmations using signed messages based on ERC191.
 /// @author Stefan George - <stefan@gnosis.io>
@@ -153,7 +152,6 @@ contract GnosisSafe is
         {
             address guard = getGuard();
             if (guard != address(0)) {
-                console.log("in guard");
                 Guard(guard).checkTransaction(
                     // Transaction info
                     to,
@@ -174,7 +172,6 @@ contract GnosisSafe is
         }
         // We require some gas to emit the events (at least 2500) after the execution and some to perform code until the execution (500)
         // We also include the 1/64 in the check that is not send along with a call to counteract potential shortings because of EIP-150
-        console.log("safe tx gas", safeTxGas);
         require(gasleft() >= ((safeTxGas * 64) / 63).max(safeTxGas + 2500) + 500, "GS010");
         // Use scope here to limit variable lifetime and prevent `stack too deep` errors
         {
@@ -185,7 +182,6 @@ contract GnosisSafe is
             gasUsed = gasUsed.sub(gasleft());
             // If no safeTxGas and no gasPrice was set (e.g. both are 0), then the internal tx is required to be successful
             // This makes it possible to use `estimateGas` without issues, as it searches for the minimum gas where the tx doesn't revert
-            console.log("requirement before payment: %s", success || safeTxGas != 0 || gasPrice != 0);
             require(success || safeTxGas != 0 || gasPrice != 0, "GS013");
             // We transfer the calculated tx costs to the tx.origin to avoid sending it to intermediate contracts that have made calls
             uint256 payment = 0;

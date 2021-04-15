@@ -2,7 +2,7 @@ import hre, { deployments } from "hardhat"
 import { Wallet, Contract } from "ethers"
 import { AddressZero } from "@ethersproject/constants";
 import solc from "solc"
-import { logGas } from "../../src/utils/multiSig";
+import { logGas } from "../../utils/multiSig";
 import { safeContractUnderTest } from "./config";
 
 export const defaultCallbackHandlerDeployment = async () => {

@@ -8,7 +8,7 @@ export default {
   paths: {
     artifacts: "build/artifacts",
     cache: "build/cache",
-    deploy: "src/deploy",
+    deploy: "deploy",
     sources: "contracts",
   },
   solidity: {
