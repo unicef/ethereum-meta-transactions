@@ -15,18 +15,10 @@ export const MyWallet = (props: any) => {
         Web3Provider
         >();
     const provider = new JsonRpcProvider(props.provider);
-    console.log("provider", provider);
     const wallet = new Wallet(props.privateKey, provider);
-    console.log("wallet", wallet);
-    // const HDWallet = HDNode.fromMnemonic(process.env.REACT_APP_mnemonic as string, process.env.REACT_APP_RPC_URL_4 as string);
-    // console.log(HDWallet);
-    // const provider = new Web3Provider(HDWallet, );
     const [balance, setBalance] = useState(0);
     const [signingAccount, setSigningAccount] = useState(null);
     const [isMetaMask, setIsMetaMask] = useState(false);
-    const onClick = () => {
-        activate(injectedConnector, (error => activate(networkConnector)));
-    };
 
     const setContext = (account:any, isMetaMask: boolean) => {
         setSigningAccount(account);
@@ -62,9 +54,6 @@ export const MyWallet = (props: any) => {
                     </EthBalance>
                 )
                 }
-                    {/* This where the business related components will be added. The call of the contract will be eventually done
-                    depending on the connector (if network, the process of meta transactions will be called)
-                */}
                     { (connector === networkConnector || balance <= 0) && (
                         <MetaTxContext.Provider
                             value={{
@@ -77,10 +66,8 @@ export const MyWallet = (props: any) => {
                         </MetaTxContext.Provider>
                     )
                     }
-
                 </EthSWRConfig>
             )}
-
         </div>
     )
 }
