@@ -31,6 +31,8 @@ contract VerifierV3 {
     return recoveredSigner;
   }
 
+  /* Examples of Execution */
+
   function updateStorage(uint256 data) public returns (uint256) {    
     StorageContract.setA(data);
 
