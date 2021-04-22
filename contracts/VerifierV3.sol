@@ -3,6 +3,7 @@ pragma solidity >=0.4.22 <0.9.0;
 interface Storage {
   function getA() external returns(uint256);
   function setA(uint256 a1) external returns(uint256);
+  function setAForOwner(uint256 a1, address ownerAddress) external returns(uint256);
 }
 
 contract VerifierV3 {
@@ -46,6 +47,16 @@ contract VerifierV3 {
     nonces[user][nonce] = true;
 
     StorageContract.setA(data);
+
+    return StorageContract.getA();    
+  }
+
+  function updateStorageForOwner(uint256 data, uint256 nonce, bytes32 hash, uint8 v, bytes32 r, bytes32 s) public returns (uint256) {
+    address user = verifySignatureAddress(data, nonce, hash, v, r, s);
+
+    nonces[user][nonce] = true;
+
+    StorageContract.setAForOwner(data, user);
 
     return StorageContract.getA();    
   }

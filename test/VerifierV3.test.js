@@ -33,13 +33,14 @@ contract("Verifier", async (accounts) => {
     "0x3141592653589793238462643383279502884197169399375105820974944592";
   const wallet = new ethers.Wallet(privateKey);
   const walletAddress = await wallet.getAddress();
-  const testWalletAddress = walletAddress;
 
   beforeEach(async () => {
     Storage = await SimpleStorage.new(defaultStorageValue);
     storageAddress = Storage.address;
+
     Verifier = await VerifierV3.new(storageAddress);
     verifierAddress = Verifier.address;
+    await Storage.setOwner(walletAddress);
     await Storage.setRelayer(verifierAddress);
     randomNumber = Math.round(Math.random() * 1000);
     randomNonce = Math.round(Math.random() * 1000 + 1000);
@@ -57,6 +58,9 @@ contract("Verifier", async (accounts) => {
     });
     it("...storage contract has relayer set to verifier", async () => {
       expect(await Storage.Relayer()).to.be.equal(Verifier.address);
+    });
+    it("...storage is owned by the offline, unfunded signer wallet", async () => {
+      expect(await Storage.isOwner.call(walletAddress)).to.be.equal(true);
     });
   });
 
@@ -163,6 +167,35 @@ contract("Verifier", async (accounts) => {
 
       expect(storedValue).to.be.equal(randomNumber);
     });
+    it("...Meta Tx for offline, unfunded wallet that owns a contract", async () => {
+      const appHash = await ethers.utils.solidityKeccak256(
+        ["uint256", "uint256"],
+        [randomNumber, randomNonce]
+      );
+      const flatSig = await wallet.signMessage(ethers.utils.arrayify(appHash));
+
+      const { v, r, s } = ethers.utils.splitSignature(flatSig);
+
+      let storageValue = await Verifier.updateStorageForOwner.call(
+        randomNumber,
+        randomNonce,
+        appHash,
+        v,
+        r,
+        s
+      );
+      storageValue = storageValue.toNumber();
+      expect(storageValue).to.be.equal(randomNumber);
+
+      await Verifier.updateStorage(randomNumber, randomNonce, appHash, v, r, s);
+
+      const storedValue = (await Storage.getA.call()).toNumber();
+
+      expect(storedValue).to.be.equal(randomNumber);
+    });
+  });
+
+  describe("Failures", () => {
     it("...replay protection for Meta Transactions", async () => {
       const appHash = await ethers.utils.solidityKeccak256(
         ["uint256", "uint256"],
@@ -187,6 +220,32 @@ contract("Verifier", async (accounts) => {
 
       await assertRevert(
         Verifier.updateStorage(randomNumber, randomNonce, appHash, v, r, s)
+      );
+    });
+    it("...Meta Tx fails for incorrect wallet signature", async () => {
+      const privateKey =
+        "0x3141592653589793238462643383279502884197169399375105820974944593";
+      const newWallet = new ethers.Wallet(privateKey);
+      const walletAddress = await wallet.getAddress();
+      const appHash = await ethers.utils.solidityKeccak256(
+        ["uint256", "uint256"],
+        [randomNumber, randomNonce]
+      );
+      const flatSig = await newWallet.signMessage(
+        ethers.utils.arrayify(appHash)
+      );
+
+      const { v, r, s } = ethers.utils.splitSignature(flatSig);
+
+      await assertRevert(
+        Verifier.updateStorageForOwner(
+          randomNumber,
+          randomNonce,
+          appHash,
+          v,
+          r,
+          s
+        )
       );
     });
   });
