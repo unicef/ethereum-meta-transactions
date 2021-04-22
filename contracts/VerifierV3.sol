@@ -31,10 +31,6 @@ contract VerifierV3 {
     return recoveredSigner;
   }
 
-  function getStorageValue() public returns (uint256) {
-    return StorageContract.getA();
-  }
-
   function updateStorage(uint256 data) public returns (uint256) {    
     StorageContract.setA(data);
 
@@ -51,4 +47,7 @@ contract VerifierV3 {
     return StorageContract.getA();    
   }
 
+  function getStorageValue() public returns (uint256) {
+    return StorageContract.getA();
+  }
 }
