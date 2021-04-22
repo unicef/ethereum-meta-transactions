@@ -1,7 +1,12 @@
 pragma solidity >=0.4.22 <0.9.0;
 
+interface Storage {
+  function getA() external returns(uint256);
+  function setA(uint256 a1) external returns(uint256);
+}
+
 contract VerifierV3 {
-  address public StorageContract;
+  Storage public StorageContract;
   /* 
     The function parameters are arbitrary and could be a more dynamic payload for dynamic function execution. 
     Assume:
@@ -12,9 +17,9 @@ contract VerifierV3 {
   mapping (address => mapping (uint256 => bool)) nonces;
 
   constructor(address storageContract) public {
-    StorageContract = storageContract;
+    StorageContract = Storage(storageContract);
   }
-  
+
   function calcHash(uint256 data, uint256 nonce) public pure returns(bytes32) {
     return keccak256(abi.encodePacked(data, nonce));
   }
@@ -26,14 +31,20 @@ contract VerifierV3 {
 
   function verifySignatureAddress(uint256 data, uint256 nonce, bytes32 hash, uint8 v, bytes32 r, bytes32 s) public view returns (address signer) {
     require(calcHash(data, nonce) == hash);
-    address recoveredSigner = recoverSignerAddress(hash, v, r, s);
-    // require(checkIfNonceValid(recoveredSigner, nonce)) or modifer;
+    address recoveredSigner = recoverSignerAddress(hash, v, r, s);    
     require(nonces[recoveredSigner][nonce] == false);
     return recoveredSigner;
   }
 
-  function updateStorage() public {
+  function getStorageValue() public returns (uint256) {
+    return StorageContract.getA();
+  }
 
+  function updateStorage(uint256 data, uint256 nonce, bytes32 hash, uint8 v, bytes32 r, bytes32 s) public returns (uint256) {
+    //address user = verifySignatureAddress(data, nonce, hash, v, r, s);
+    StorageContract.setA(data);
+
+    return StorageContract.getA();    
   }
 
 }
