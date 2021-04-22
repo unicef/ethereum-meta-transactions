@@ -63,5 +63,7 @@ contract VerifierV3 {
   Where data is an encoding of functionName, param types and args. 
 
   Hash the encoded call data with the nonce. It can be made more dynamic including a contract Address. Any data included in the hash is immutable.
+
+  ethersjs has an interface creator based on ABIs that will encode function data
   */
 }
