@@ -8,13 +8,7 @@ interface Storage {
 
 contract VerifierV3 {
   Storage public StorageContract;
-  /* 
-    The function parameters are arbitrary and could be a more dynamic payload for dynamic function execution. 
-    Assume:
-    data = an erc721 token id 
-    newOwner = address to set for token id owner 
-    nonce = TODO map if nonce has been used yet or not, reject used nonces.
-  */
+  
   mapping (address => mapping (uint256 => bool)) nonces;
 
   constructor(address storageContract) public {
