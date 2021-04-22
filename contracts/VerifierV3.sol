@@ -60,6 +60,8 @@ contract VerifierV3 {
 
   Contract.call(data);
 
-  Where data is an encoding of functionName, param types and args
+  Where data is an encoding of functionName, param types and args. 
+
+  Hash the encoded call data with the nonce. It can be made more dynamic including a contract Address. Any data included in the hash is immutable.
   */
 }
