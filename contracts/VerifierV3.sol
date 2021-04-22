@@ -52,4 +52,14 @@ contract VerifierV3 {
   function getStorageValue() public returns (uint256) {
     return StorageContract.getA();
   }
+
+  /*
+
+  Arbitrary calls can be made using 
+  address Contract = "0x....";
+
+  Contract.call(data);
+
+  Where data is an encoding of functionName, param types and args
+  */
 }
