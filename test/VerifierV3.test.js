@@ -150,18 +150,11 @@ contract("Verifier", async (accounts) => {
 
       const { v, r, s } = ethers.utils.splitSignature(flatSig);
 
-      let storageValue = await Verifier.updateStorage.call(
-        randomNumber,
-        randomNonce,
-        appHash,
-        v,
-        r,
-        s
-      );
+      let storageValue = await Verifier.updateStorage.call(randomNumber);
       storageValue = storageValue.toNumber();
       expect(storageValue).to.be.equal(randomNumber);
 
-      await Verifier.updateStorage(randomNumber, randomNonce, appHash, v, r, s);
+      await Verifier.updateStorage(randomNumber);
 
       const storedValue = (await Storage.getA.call()).toNumber();
 
@@ -187,7 +180,7 @@ contract("Verifier", async (accounts) => {
       storageValue = storageValue.toNumber();
       expect(storageValue).to.be.equal(randomNumber);
 
-      await Verifier.updateStorage(randomNumber, randomNonce, appHash, v, r, s);
+      await Verifier.updateStorage(randomNumber);
 
       const storedValue = (await Storage.getA.call()).toNumber();
 
@@ -205,7 +198,7 @@ contract("Verifier", async (accounts) => {
 
       const { v, r, s } = ethers.utils.splitSignature(flatSig);
 
-      let storageValue = await Verifier.updateStorage.call(
+      let storageValue = await Verifier.updateStorageForOwner.call(
         randomNumber,
         randomNonce,
         appHash,
@@ -216,10 +209,24 @@ contract("Verifier", async (accounts) => {
       storageValue = storageValue.toNumber();
       expect(storageValue).to.be.equal(randomNumber);
 
-      await Verifier.updateStorage(randomNumber, randomNonce, appHash, v, r, s);
+      await Verifier.updateStorageForOwner(
+        randomNumber,
+        randomNonce,
+        appHash,
+        v,
+        r,
+        s
+      );
 
       await assertRevert(
-        Verifier.updateStorage(randomNumber, randomNonce, appHash, v, r, s)
+        Verifier.updateStorageForOwner(
+          randomNumber,
+          randomNonce,
+          appHash,
+          v,
+          r,
+          s
+        )
       );
     });
     it("...Meta Tx fails for incorrect wallet signature", async () => {
