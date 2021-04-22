@@ -1,0 +1,1 @@
+const Verifier = artifacts.require('VerifierV2');
