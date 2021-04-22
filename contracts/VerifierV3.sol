@@ -41,7 +41,10 @@ contract VerifierV3 {
   }
 
   function updateStorage(uint256 data, uint256 nonce, bytes32 hash, uint8 v, bytes32 r, bytes32 s) public returns (uint256) {
-    //address user = verifySignatureAddress(data, nonce, hash, v, r, s);
+    address user = verifySignatureAddress(data, nonce, hash, v, r, s);
+
+    nonces[user][nonce] = true;
+
     StorageContract.setA(data);
 
     return StorageContract.getA();    

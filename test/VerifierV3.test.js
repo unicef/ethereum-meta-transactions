@@ -4,6 +4,8 @@ const VerifierV3 = artifacts.require("VerifierV3");
 const ethers = require("ethers");
 const Web3 = require("web3");
 const util = require("ethereumjs-util");
+const assertRevert = require("./utils/assertRevert");
+
 require("chai")
   .use(require("chai-as-promised"))
   .use(require("chai-bignumber")(BigNumber))
@@ -160,6 +162,32 @@ contract("Verifier", async (accounts) => {
       const storedValue = (await Storage.getA.call()).toNumber();
 
       expect(storedValue).to.be.equal(randomNumber);
+    });
+    it("...replay protection for Meta Transactions", async () => {
+      const appHash = await ethers.utils.solidityKeccak256(
+        ["uint256", "uint256"],
+        [randomNumber, randomNonce]
+      );
+      const flatSig = await wallet.signMessage(ethers.utils.arrayify(appHash));
+
+      const { v, r, s } = ethers.utils.splitSignature(flatSig);
+
+      let storageValue = await Verifier.updateStorage.call(
+        randomNumber,
+        randomNonce,
+        appHash,
+        v,
+        r,
+        s
+      );
+      storageValue = storageValue.toNumber();
+      expect(storageValue).to.be.equal(randomNumber);
+
+      await Verifier.updateStorage(randomNumber, randomNonce, appHash, v, r, s);
+
+      await assertRevert(
+        Verifier.updateStorage(randomNumber, randomNonce, appHash, v, r, s)
+      );
     });
   });
 });
