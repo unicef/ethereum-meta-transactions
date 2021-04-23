@@ -1,13 +1,10 @@
 import './App.css';
 import React, {useContext, useEffect, useState} from 'react'
 import {MetaTx} from "./components/MetaTx";
-import {Wallet} from "@ethersproject/wallet"
-import useEthSWR from "ether-swr";
 import {useWeb3React} from "@web3-react/core";
 import {Contract} from "@ethersproject/contracts";
-import {additionContract, setAContract} from "./utils";
+import {setAContract} from "./utils";
 import {ExecuteMetaTx} from "./components/ExecuteMetaTx";
-import {TransactionResponse} from "@ethersproject/providers";
 
 require("dotenv").config();
 
@@ -15,26 +12,22 @@ require("dotenv").config();
 
 export const GetA = () => {
     const [res, setRes] = useState("");
-    const [clicked, setClicked] = useState(false);
-    const activate = () =>{
-        setClicked(true);
+    const {library} = useWeb3React();
+    // const [clicked, setClicked] = useState(false);
+    const activate = async () =>{
+        const getAContract = new Contract(setAContract.address,setAContract.abi, library);
+        console.log(getAContract.getA());
+        const value = await getAContract.getA();
+        setRes(value.toString());
+        //setClicked(true);
     }
-    // works only when metamask is activated (injected connector)
-    //  const { data: res, error} = useEthSWR(
-    //      [additionContract.address, 'doAddition',1,2]
-    //  )
-    //  if(error){
-    //      console.log(error);
-    //      return <div>problem</div>
-    //  }
-    // if (res){
     return (
         <div>
             <button onClick={activate}> Get A </button>
-            {(clicked &&
-                <ExecuteMetaTx contract={setAContract} method={"getA"} result={setRes}>
-                    <div>A: {res.toString()} </div>
-                </ExecuteMetaTx>)}
+            {/*{(clicked &&*/}
+            {/*    <ExecuteMetaTx contract={setAContract} method={"getA"} result={setRes}>*/}
+                    <div>A: {res} </div>
+                {/*</ExecuteMetaTx>)}*/}
         </div>
     )
     // }
@@ -84,7 +77,7 @@ export const SetA = () => {
 
 export const App = () => {
     return (
-        <MetaTx privateKey={process.env.REACT_APP_rinkeby_key as string} provider={process.env.REACT_APP_RPC_URL_4 as string} contracts={[additionContract, setAContract]}>
+        <MetaTx privateKey={process.env.REACT_APP_rinkeby_key as string} provider={process.env.REACT_APP_RPC_URL_4 as string} contracts={[setAContract]}>
             <GetA/>
             <SetA/>
         </MetaTx>

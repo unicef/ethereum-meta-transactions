@@ -1,15 +1,9 @@
-import AdditionContract from "../abi/Addition.json"
 import SetAContract from "../abi/SetA.json"
 import VerifierContract from "../abi/Verifier.json"
-import VerifierV2Contract from "../abi/VerifierV2.json"
-import {BigNumber} from "ethers";
-import {useContext} from "react";
-import MetaTxContext from "../context/MetaTxContext";
-import {verifyMessage, Wallet} from "@ethersproject/wallet";
-import {Signer, Verify} from "crypto";
-import {Contract} from "@ethersproject/contracts";
-import {arrayify, defaultAbiCoder, keccak256, solidityKeccak256, splitSignature, toUtf8Bytes} from "ethers/lib/utils";
-import {Web3Provider} from "@ethersproject/providers";
+import {Signer} from "ethers";
+import {Wallet} from "@ethersproject/wallet";
+import {Contract} from "ethers";
+import {arrayify, solidityKeccak256} from "ethers/lib/utils";
 
 export const Networks = {
   MainNet: 1,
@@ -59,55 +53,31 @@ export const setAContract = {
   address: "0x8a0dA59972F9E80d84B9add4EBF08Ec9c759F3b2",
   abi: SetAContract.abi
 }
-export const additionContract = {
-  address: "0x9e72c3472Ad3C227F72F68be491541EFe75664Be",
-  abi: AdditionContract.abi
-}
 
 export const verifierContract = {
-  address: "0x25ce36BD0DFE8764975eB26C5ce5465F9F370c4A",
+  address: "0xd416Daf08d9F50B5274864F572b551Ef8076868C",
   abi: VerifierContract.abi
 }
 
-export const verifierV2Contract = {
-  address: "0x1b4DCdA8839767D9fa69DdE8b809B002695ec047",
-  abi: VerifierV2Contract.abi
-}
 
-export const execute = async (account: string, library: Web3Provider, wallet: Wallet, functionToExecute: any, paramsToPass: any=null) => {
-  const signer = library.getSigner();
-  if (signer) {
-    // let signature;
-    let someHash = keccak256(toUtf8Bytes(""))
-    if (paramsToPass) {
-      someHash = keccak256(paramsToPass);
-    }
-    let payload = defaultAbiCoder.encode([ "bytes32" ], [ someHash ]);
-    console.log("Payload:", payload);
-
-    let payloadHash = keccak256(payload);
-    console.log("PayloadHash:", payloadHash);
-    let signature = await signer.signMessage(arrayify(payloadHash));
-    let sig = splitSignature(signature);
-    // const recoveredAccount = verifyMessage(arrayify(payloadHash), sig);
-    // console.log("test");
-    // console.log("recovered account", recoveredAccount);
-    // console.log("signer account", account);
-    const contract = new Contract(verifierV2Contract.address,verifierV2Contract.abi,wallet);
-    // const recoverAddr = await contract.recoverAddr(someHash,sig.v,sig.r,sig.s);
-    // console.log("test 2");
-    // console.log("recovered address with contract", recoverAddr)
-    const isSigned = await contract.isSigned(account,someHash,sig.v,sig.r,sig.s);
-    if (isSigned){
-      const tx = await functionToExecute(paramsToPass);
-      console.log(tx);
-      if (BigNumber.isBigNumber(tx)) {
-        return tx.toString();
-      }
-      else return tx;
-    }
-    return "not correctly signed"
+export const execute = async (verifier: Contract, signer: Signer, wallet: Wallet, contract: Contract, method: string, params: any[]) => {
+  const data = contract.interface.encodeFunctionData(method,params);
+  const account = await signer.getAddress();
+  const nonce = await verifier.nonce(account);
+  const parts = [
+    verifier.address,
+    account,
+    contract.address,
+    0,
+    data,
+    nonce
+  ];
+  let payloadHash = solidityKeccak256([ "address", "address", "address", "uint", "bytes", "uint"], parts);
+  const signature = await signer.signMessage(arrayify(payloadHash));
+  const tx = await verifier.forward(signature, account, contract.address, 0, data, {gasLimit: 1200000, gasPrice: Math.round(4 * 1000000000)});
+  if (tx){
+    return tx
   }
-  return "no account";
+  return "problem";
 };
 
