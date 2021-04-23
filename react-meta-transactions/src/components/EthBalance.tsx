@@ -24,8 +24,5 @@ export const EthBalance = (props: any) => {
   useEffect(() => {
     props.balance(balance);
   });
-  if (!balance) {
-    return <div>...</div>
-  }
-  return <div>{parseFloat(formatEther(balance)).toPrecision(4)} Ξ</div>
+    return <></>
 }

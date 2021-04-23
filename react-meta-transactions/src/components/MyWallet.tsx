@@ -1,12 +1,12 @@
 import React, {useState} from 'react'
 import { useWeb3React } from '@web3-react/core'
-import {JsonRpcProvider, Web3Provider} from '@ethersproject/providers'
-import { shorter} from '../utils'
+import {Web3Provider} from '@ethersproject/providers'
 import {EthSWRConfig} from 'ether-swr'
 import {EthBalance} from "./EthBalance";
 import {injectedConnector, networkConnector} from "../connectors";
 import MetaTxContext from "../context/MetaTxContext";
 import {Wallet} from "@ethersproject/wallet";
+import {ethers} from "ethers";
 
 export const ABIs = (contracts: any, chainId: number) => { return contracts.map((contract: any) => { return [contract.address,contract.abi]})}
 
@@ -14,7 +14,7 @@ export const MyWallet = (props: any) => {
     const { connector, chainId, account, activate, active, library} = useWeb3React<
         Web3Provider
         >();
-    const provider = new JsonRpcProvider(props.provider);
+    const provider = new ethers.providers.JsonRpcProvider(props.provider)
     const wallet = new Wallet(props.privateKey, provider);
     const [balance, setBalance] = useState(0);
     const [signingAccount, setSigningAccount] = useState(null);
@@ -36,7 +36,7 @@ export const MyWallet = (props: any) => {
     }, [account,balance])
 
     return (
-        <div>
+        <>
             {active && chainId && (
                 <EthSWRConfig
                     value={{ web3Provider: library, ABIs: new Map(ABIs(props.contracts,chainId)) }}
@@ -68,6 +68,6 @@ export const MyWallet = (props: any) => {
                     }
                 </EthSWRConfig>
             )}
-        </div>
+        </>
     )
 }

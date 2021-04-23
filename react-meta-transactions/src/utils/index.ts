@@ -1,12 +1,9 @@
 import SetAContract from "../abi/SetA.json"
 import VerifierContract from "../abi/Verifier.json"
-import {BigNumber, Signer, utils} from "ethers";
-import {useContext} from "react";
-import MetaTxContext from "../context/MetaTxContext";
-import {verifyMessage, Wallet} from "@ethersproject/wallet";
+import {Signer} from "ethers";
+import {Wallet} from "@ethersproject/wallet";
 import {Contract} from "ethers";
-import {arrayify, defaultAbiCoder, keccak256, solidityKeccak256, splitSignature, toUtf8Bytes} from "ethers/lib/utils";
-import {Web3Provider} from "@ethersproject/providers";
+import {arrayify, solidityKeccak256} from "ethers/lib/utils";
 
 export const Networks = {
   MainNet: 1,
@@ -66,7 +63,6 @@ export const verifierContract = {
 export const execute = async (verifier: Contract, signer: Signer, wallet: Wallet, contract: Contract, method: string, params: any[]) => {
   const data = contract.interface.encodeFunctionData(method,params);
   const account = await signer.getAddress();
-  // pass verifier as param and make it use the relayer wallet in test
   const nonce = await verifier.nonce(account);
   const parts = [
     verifier.address,
@@ -77,34 +73,11 @@ export const execute = async (verifier: Contract, signer: Signer, wallet: Wallet
     nonce
   ];
   let payloadHash = solidityKeccak256([ "address", "address", "address", "uint", "bytes", "uint"], parts);
-  // const hashFromContract = await verifier.getHash(account, contract.address, 0, data);
   const signature = await signer.signMessage(arrayify(payloadHash));
-  // const sig = splitSignature(signature);
-  // console.log("signature", sig);
-  // const recoveredAccount = verifyMessage(arrayify(payloadHash), sig);
-  // console.log("test");
-  // console.log("recovered account", recoveredAccount);
-  // console.log("signer account", account);
   const tx = await verifier.forward(signature, account, contract.address, 0, data, {gasLimit: 1200000, gasPrice: Math.round(4 * 1000000000)});
   if (tx){
     return tx
   }
   return "problem";
-  // const recoveredAccount = verifyMessage(arrayify(payloadHash), sig);
-  // console.log("test");
-  // console.log("recovered account", recoveredAccount);
-  // console.log("signer account", account);
-  // const recoverAddr = await contract.recoverAddr(someHash,sig.v,sig.r,sig.s);
-  // console.log("test 2");
-  // console.log("recovered address with contract", recoverAddr)
-  // const isSigned = await contract.isSigned(account,someHash,sig.v,sig.r,sig.s);
-  // if (isSigned){
-  //   const tx = await functionToExecute(paramsToPass);
-  //   console.log(tx);
-  //   if (BigNumber.isBigNumber(tx)) {
-  //     return tx.toString();
-  //   }
-  //   else return tx;
-  // }
 };
 

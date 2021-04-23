@@ -14,6 +14,7 @@ import {
 } from "../utils/multiSig";
 import { parseEther } from "@ethersproject/units";
 import { chainId } from "./utils/encoding";
+import {execute} from "../../../src/utils";
 
 describe("GnosisSafe", async () => {
 
@@ -36,13 +37,31 @@ describe("GnosisSafe", async () => {
         const verifier = await verifierContract.deploy();
         const callerContract = await hre.ethers.getContractFactory("Caller", user1);
         const caller = await callerContract.deploy();
+        const safeTest = await hre.ethers.getContractFactory("GnosisSafe", relayer);
+        const gnosisSafe = await safeTest.deploy();
         return {
             safe: await getSafeWithOwners([user1.address, user2.address]),
             storageSetter,
             verifier,
-            caller
+            caller,
+            gnosisSafe
         }
     })
+
+    // describe("setup gnosis safe Meta", async () => {
+    //
+    //     it ('should emit successful safe setup', async () => {
+    //         const {gnosisSafe, verifier} = await setupTests();
+    //         await execute(verifier, user1, relayer, gnosisSafe, "setup", [[user1.address], 1, '0x0000000000000000000000000000000000000000', '0x', '0xd5D82B6aDDc9027B22dCA772Aa68D5d74cdBdF44', '0x0000000000000000000000000000000000000000', 0, '0x0000000000000000000000000000000000000000'])
+    //         // await expect(
+    //         //     await execute(verifier, user1, relayer, gnosisSafe, "setup", [[user1.address], 1, '0x0000000000000000000000000000000000000000', '0x', '0xd5D82B6aDDc9027B22dCA772Aa68D5d74cdBdF44', '0x0000000000000000000000000000000000000000', 0, '0x0000000000000000000000000000000000000000'])
+    //         // ).to.emit(gnosisSafe, "SafeSetup")
+    //         await expect(
+    //             await gnosisSafe.isReallyOwner(user1.address)
+    //         ).to.be.true;
+    //     })
+    //
+    // })
 
     describe("execTransaction", async () => {
 
@@ -92,6 +111,7 @@ describe("GnosisSafe", async () => {
         it('should emit event for successful Meta call execution', async () => {
             const { safe, storageSetter, verifier } = await setupTests()
             const balanceBeforeTx = await hre.ethers.provider.getBalance(user1.address);
+            console.log(user2.address)
             await expect(
                 executeMetaContractCallWithSigners(verifier, user1, relayer, safe, storageSetter, "setStorage", ["0xbaddad"], [user1, user2])
             ).to.emit(safe, "ExecutionSuccess")
