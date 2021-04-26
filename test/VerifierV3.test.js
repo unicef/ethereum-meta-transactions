@@ -85,7 +85,6 @@ contract("Verifier", async (accounts) => {
       );
       const contractHash = await Verifier.calcHash.call(
         randomNumber,
-
         randomNonce
       );
 
@@ -254,6 +253,39 @@ contract("Verifier", async (accounts) => {
           s
         )
       );
+    });
+  });
+  describe("Gas Estimates", () => {
+    it("...estimates transaction gas", async () => {
+      const appHash = await ethers.utils.solidityKeccak256(
+        ["uint256", "uint256"],
+        [randomNumber, randomNonce]
+      );
+      const flatSig = await wallet.signMessage(ethers.utils.arrayify(appHash));
+
+      const { v, r, s } = ethers.utils.splitSignature(flatSig);
+
+      let storageValue = await Verifier.updateStorageForOwner.call(
+        randomNumber,
+        randomNonce,
+        appHash,
+        v,
+        r,
+        s
+      );
+      storageValue = storageValue.toNumber();
+      expect(storageValue).to.be.equal(randomNumber);
+
+      const { receipt } = await Verifier.updateStorageForOwner(
+        randomNumber,
+        randomNonce,
+        appHash,
+        v,
+        r,
+        s
+      );
+
+      console.log(`The transaction used: ${receipt.gasUsed} gas.`);
     });
   });
 });
