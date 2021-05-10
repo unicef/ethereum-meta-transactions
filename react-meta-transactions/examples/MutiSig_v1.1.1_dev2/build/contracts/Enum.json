@@ -1,0 +1,156 @@
+{
+  "contractName": "Enum",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.14+commit.01f1aaa4\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"author\":\"Richard Meissner - <richard@gnosis.pm>\",\"methods\":{},\"title\":\"Enum - Collection of enums\"},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/Users/rymou/IdeaProjects/unicef/ethereum-meta-transactions/react-meta-transactions/examples/MutiSig_v1.1.1_dev2/contracts/common/Enum.sol\":\"Enum\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/rymou/IdeaProjects/unicef/ethereum-meta-transactions/react-meta-transactions/examples/MutiSig_v1.1.1_dev2/contracts/common/Enum.sol\":{\"keccak256\":\"0x7bc6e5afb9436d9f7e376c2cdba51ca1f337e1b31c04cca5769db3a77ed40081\",\"urls\":[\"bzz-raw://88b3a68baaff962b69b040af62698034bf9c99319e4a6dce71abc2c0c88fba91\",\"dweb:/ipfs/QmTefyhXcMALQew96u7YRLQBnye9vapqkKBWxbynWpMHDM\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603e80601d6000396000f3fe6080604052600080fdfea265627a7a723158208b6de1804d640d7159562a00745ae5a76d48009c90e13edba35963405716e0fc64736f6c634300050e0032",
+  "deployedBytecode": "0x6080604052600080fdfea265627a7a723158208b6de1804d640d7159562a00745ae5a76d48009c90e13edba35963405716e0fc64736f6c634300050e0032",
+  "sourceMap": "123:79:8:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;123:79:8;;;;;;;",
+  "deployedSourceMap": "123:79:8:-;;;;;",
+  "source": "pragma solidity >=0.5.0 <0.7.0;\n\n\n/// @title Enum - Collection of enums\n/// @author Richard Meissner - <richard@gnosis.pm>\ncontract Enum {\n    enum Operation {\n        Call,\n        DelegateCall\n    }\n}\n",
+  "sourcePath": "C:\\Users\\rymou\\IdeaProjects\\unicef\\ethereum-meta-transactions\\react-meta-transactions\\examples\\MutiSig_v1.1.1_dev2\\contracts\\common\\Enum.sol",
+  "ast": {
+    "absolutePath": "/C/Users/rymou/IdeaProjects/unicef/ethereum-meta-transactions/react-meta-transactions/examples/MutiSig_v1.1.1_dev2/contracts/common/Enum.sol",
+    "exportedSymbols": {
+      "Enum": [
+        2254
+      ]
+    },
+    "id": 2255,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 2250,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.5",
+          ".0",
+          "<",
+          "0.7",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:31:8"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": "@title Enum - Collection of enums\n @author Richard Meissner - <richard@gnosis.pm>",
+        "fullyImplemented": true,
+        "id": 2254,
+        "linearizedBaseContracts": [
+          2254
+        ],
+        "name": "Enum",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "Enum.Operation",
+            "id": 2253,
+            "members": [
+              {
+                "id": 2251,
+                "name": "Call",
+                "nodeType": "EnumValue",
+                "src": "168:4:8"
+              },
+              {
+                "id": 2252,
+                "name": "DelegateCall",
+                "nodeType": "EnumValue",
+                "src": "182:12:8"
+              }
+            ],
+            "name": "Operation",
+            "nodeType": "EnumDefinition",
+            "src": "143:57:8"
+          }
+        ],
+        "scope": 2255,
+        "src": "123:79:8"
+      }
+    ],
+    "src": "0:203:8"
+  },
+  "legacyAST": {
+    "absolutePath": "/C/Users/rymou/IdeaProjects/unicef/ethereum-meta-transactions/react-meta-transactions/examples/MutiSig_v1.1.1_dev2/contracts/common/Enum.sol",
+    "exportedSymbols": {
+      "Enum": [
+        2254
+      ]
+    },
+    "id": 2255,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 2250,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.5",
+          ".0",
+          "<",
+          "0.7",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:31:8"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": "@title Enum - Collection of enums\n @author Richard Meissner - <richard@gnosis.pm>",
+        "fullyImplemented": true,
+        "id": 2254,
+        "linearizedBaseContracts": [
+          2254
+        ],
+        "name": "Enum",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "Enum.Operation",
+            "id": 2253,
+            "members": [
+              {
+                "id": 2251,
+                "name": "Call",
+                "nodeType": "EnumValue",
+                "src": "168:4:8"
+              },
+              {
+                "id": 2252,
+                "name": "DelegateCall",
+                "nodeType": "EnumValue",
+                "src": "182:12:8"
+              }
+            ],
+            "name": "Operation",
+            "nodeType": "EnumDefinition",
+            "src": "143:57:8"
+          }
+        ],
+        "scope": 2255,
+        "src": "123:79:8"
+      }
+    ],
+    "src": "0:203:8"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.14+commit.01f1aaa4.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.1.0",
+  "updatedAt": "2021-04-29T12:59:15.375Z",
+  "devdoc": {
+    "author": "Richard Meissner - <richard@gnosis.pm>",
+    "methods": {},
+    "title": "Enum - Collection of enums"
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

@@ -1,4 +1,4 @@
-const Verifier = artifacts.require("VerifierV2");
+const Verifier = artifacts.require("Verifier");
 
 module.exports = function(deployer) {
   deployer.deploy(Verifier);

@@ -1,0 +1,1587 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "C:\\Users\\rymou\\IdeaProjects\\unicef\\ethereum-meta-transactions\\react-meta-transactions\\examples\\MutiSig_v1.1.1_dev2\\contracts\\base\\Executor.sol": {
+      "lastModificationDate": 1619696063828,
+      "contentHash": "91550d4464c25f2745208cfbc96a4e86",
+      "sourceName": "contracts/base/Executor.sol",
+      "solcConfig": {
+        "version": "0.5.14",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "../common/Enum.sol"
+      ],
+      "versionPragmas": [
+        ">=0.5.0 <0.7.0"
+      ],
+      "artifacts": [
+        "Executor"
+      ]
+    },
+    "C:\\Users\\rymou\\IdeaProjects\\unicef\\ethereum-meta-transactions\\react-meta-transactions\\examples\\MutiSig_v1.1.1_dev2\\contracts\\common\\Enum.sol": {
+      "lastModificationDate": 1619696063855,
+      "contentHash": "cc6fb3077de74cb840846eced1fd740c",
+      "sourceName": "contracts/common/Enum.sol",
+      "solcConfig": {
+        "version": "0.5.14",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0 <0.7.0"
+      ],
+      "artifacts": [
+        "Enum"
+      ]
+    },
+    "C:\\Users\\rymou\\IdeaProjects\\unicef\\ethereum-meta-transactions\\react-meta-transactions\\examples\\MutiSig_v1.1.1_dev2\\contracts\\base\\ModuleManager.sol": {
+      "lastModificationDate": 1619696063834,
+      "contentHash": "133533df8d9615b933ca597c2ca4e9e8",
+      "sourceName": "contracts/base/ModuleManager.sol",
+      "solcConfig": {
+        "version": "0.5.14",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "../common/Enum.sol",
+        "../common/SelfAuthorized.sol",
+        "./Executor.sol",
+        "./Module.sol"
+      ],
+      "versionPragmas": [
+        ">=0.5.0 <0.7.0"
+      ],
+      "artifacts": [
+        "ModuleManager"
+      ]
+    },
+    "C:\\Users\\rymou\\IdeaProjects\\unicef\\ethereum-meta-transactions\\react-meta-transactions\\examples\\MutiSig_v1.1.1_dev2\\contracts\\common\\SelfAuthorized.sol": {
+      "lastModificationDate": 1619696063862,
+      "contentHash": "dbb0bc5d93c775f39a7ac5a29504f56e",
+      "sourceName": "contracts/common/SelfAuthorized.sol",
+      "solcConfig": {
+        "version": "0.5.14",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0 <0.7.0"
+      ],
+      "artifacts": [
+        "SelfAuthorized"
+      ]
+    },
+    "C:\\Users\\rymou\\IdeaProjects\\unicef\\ethereum-meta-transactions\\react-meta-transactions\\examples\\MutiSig_v1.1.1_dev2\\contracts\\base\\Module.sol": {
+      "lastModificationDate": 1619696063825,
+      "contentHash": "73ee346ed160b52d12151ed2fae739fd",
+      "sourceName": "contracts/base/Module.sol",
+      "solcConfig": {
+        "version": "0.5.14",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "../common/MasterCopy.sol",
+        "./ModuleManager.sol"
+      ],
+      "versionPragmas": [
+        ">=0.5.0 <0.7.0"
+      ],
+      "artifacts": [
+        "Module"
+      ]
+    },
+    "C:\\Users\\rymou\\IdeaProjects\\unicef\\ethereum-meta-transactions\\react-meta-transactions\\examples\\MutiSig_v1.1.1_dev2\\contracts\\common\\MasterCopy.sol": {
+      "lastModificationDate": 1619696063858,
+      "contentHash": "681cc785e299fa5493c257a3ac997476",
+      "sourceName": "contracts/common/MasterCopy.sol",
+      "solcConfig": {
+        "version": "0.5.14",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "./SelfAuthorized.sol"
+      ],
+      "versionPragmas": [
+        ">=0.5.0 <0.7.0"
+      ],
+      "artifacts": [
+        "MasterCopy"
+      ]
+    },
+    "C:\\Users\\rymou\\IdeaProjects\\unicef\\ethereum-meta-transactions\\react-meta-transactions\\examples\\MutiSig_v1.1.1_dev2\\contracts\\modules\\WhitelistModule.sol": {
+      "lastModificationDate": 1619696063887,
+      "contentHash": "211df39ab3a2a963861bf95bbbdb3cd9",
+      "sourceName": "contracts/modules/WhitelistModule.sol",
+      "solcConfig": {
+        "version": "0.5.14",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "../base/Module.sol",
+        "../base/ModuleManager.sol",
+        "../base/OwnerManager.sol",
+        "../common/Enum.sol"
+      ],
+      "versionPragmas": [
+        ">=0.5.0 <0.7.0"
+      ],
+      "artifacts": [
+        "WhitelistModule"
+      ]
+    },
+    "C:\\Users\\rymou\\IdeaProjects\\unicef\\ethereum-meta-transactions\\react-meta-transactions\\examples\\MutiSig_v1.1.1_dev2\\contracts\\base\\OwnerManager.sol": {
+      "lastModificationDate": 1619696063831,
+      "contentHash": "08b86e482449b428d6e8055ddb10c18a",
+      "sourceName": "contracts/base/OwnerManager.sol",
+      "solcConfig": {
+        "version": "0.5.14",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "../common/SelfAuthorized.sol"
+      ],
+      "versionPragmas": [
+        ">=0.5.0 <0.7.0"
+      ],
+      "artifacts": [
+        "OwnerManager"
+      ]
+    },
+    "C:\\Users\\rymou\\IdeaProjects\\unicef\\ethereum-meta-transactions\\react-meta-transactions\\examples\\MutiSig_v1.1.1_dev2\\contracts\\modules\\StateChannelModule.sol": {
+      "lastModificationDate": 1619696063893,
+      "contentHash": "76188bba25eda018bd663e044bc468bb",
+      "sourceName": "contracts/modules/StateChannelModule.sol",
+      "solcConfig": {
+        "version": "0.5.14",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "../base/Module.sol",
+        "../base/OwnerManager.sol",
+        "../common/Enum.sol",
+        "../common/SignatureDecoder.sol"
+      ],
+      "versionPragmas": [
+        ">=0.5.0 <0.7.0"
+      ],
+      "artifacts": [
+        "StateChannelModule"
+      ]
+    },
+    "C:\\Users\\rymou\\IdeaProjects\\unicef\\ethereum-meta-transactions\\react-meta-transactions\\examples\\MutiSig_v1.1.1_dev2\\contracts\\common\\SignatureDecoder.sol": {
+      "lastModificationDate": 1619696063866,
+      "contentHash": "6248aeeb39579c34148346e7f03fc2fe",
+      "sourceName": "contracts/common/SignatureDecoder.sol",
+      "solcConfig": {
+        "version": "0.5.14",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0 <0.7.0"
+      ],
+      "artifacts": [
+        "SignatureDecoder"
+      ]
+    },
+    "C:\\Users\\rymou\\IdeaProjects\\unicef\\ethereum-meta-transactions\\react-meta-transactions\\examples\\MutiSig_v1.1.1_dev2\\contracts\\GnosisSafe.sol": {
+      "lastModificationDate": 1620389854947,
+      "contentHash": "30829431ce46cf45c9503ed6d9e98e26",
+      "sourceName": "contracts/GnosisSafe.sol",
+      "solcConfig": {
+        "version": "0.5.14",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "./base/ModuleManager.sol",
+        "./base/OwnerManager.sol",
+        "./base/FallbackManager.sol",
+        "./common/MasterCopy.sol",
+        "./common/SignatureDecoder.sol",
+        "./common/SecuredTokenTransfer.sol",
+        "./interfaces/ISignatureValidator.sol",
+        "./external/GnosisSafeMath.sol",
+        "hardhat/console.sol"
+      ],
+      "versionPragmas": [
+        ">=0.5.0 <0.7.0"
+      ],
+      "artifacts": [
+        "GnosisSafe"
+      ]
+    },
+    "C:\\Users\\rymou\\IdeaProjects\\unicef\\ethereum-meta-transactions\\react-meta-transactions\\examples\\MutiSig_v1.1.1_dev2\\contracts\\base\\FallbackManager.sol": {
+      "lastModificationDate": 1619696063838,
+      "contentHash": "817013ed0104243bd5853e47a7af4b6a",
+      "sourceName": "contracts/base/FallbackManager.sol",
+      "solcConfig": {
+        "version": "0.5.14",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "../common/SelfAuthorized.sol"
+      ],
+      "versionPragmas": [
+        ">=0.5.0 <0.7.0"
+      ],
+      "artifacts": [
+        "FallbackManager"
+      ]
+    },
+    "C:\\Users\\rymou\\IdeaProjects\\unicef\\ethereum-meta-transactions\\react-meta-transactions\\examples\\MutiSig_v1.1.1_dev2\\contracts\\common\\SecuredTokenTransfer.sol": {
+      "lastModificationDate": 1619696063873,
+      "contentHash": "3897df1650d69173f3568d9b50f916be",
+      "sourceName": "contracts/common/SecuredTokenTransfer.sol",
+      "solcConfig": {
+        "version": "0.5.14",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0 <0.7.0"
+      ],
+      "artifacts": [
+        "SecuredTokenTransfer"
+      ]
+    },
+    "C:\\Users\\rymou\\IdeaProjects\\unicef\\ethereum-meta-transactions\\react-meta-transactions\\examples\\MutiSig_v1.1.1_dev2\\contracts\\interfaces\\ISignatureValidator.sol": {
+      "lastModificationDate": 1619696063943,
+      "contentHash": "29d211f5dfff296bc91723c78c37ef00",
+      "sourceName": "contracts/interfaces/ISignatureValidator.sol",
+      "solcConfig": {
+        "version": "0.5.14",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0 <0.7.0"
+      ],
+      "artifacts": [
+        "ISignatureValidator",
+        "ISignatureValidatorConstants"
+      ]
+    },
+    "C:\\Users\\rymou\\IdeaProjects\\unicef\\ethereum-meta-transactions\\react-meta-transactions\\examples\\MutiSig_v1.1.1_dev2\\contracts\\external\\GnosisSafeMath.sol": {
+      "lastModificationDate": 1619696063921,
+      "contentHash": "899e99a3e76fca16eb4983ce653fe384",
+      "sourceName": "contracts/external/GnosisSafeMath.sol",
+      "solcConfig": {
+        "version": "0.5.14",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0 <0.7.0"
+      ],
+      "artifacts": [
+        "GnosisSafeMath"
+      ]
+    },
+    "C:\\Users\\rymou\\IdeaProjects\\unicef\\ethereum-meta-transactions\\react-meta-transactions\\examples\\MutiSig_v1.1.1_dev2\\contracts\\mocks\\ERC1155Token.sol": {
+      "lastModificationDate": 1619696063848,
+      "contentHash": "3086bd8923a4f29f39753d2dd8932131",
+      "sourceName": "contracts/mocks/ERC1155Token.sol",
+      "solcConfig": {
+        "version": "0.5.14",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "../interfaces/ERC1155TokenReceiver.sol",
+        "../external/GnosisSafeMath.sol"
+      ],
+      "versionPragmas": [
+        ">=0.5.0 <0.7.0"
+      ],
+      "artifacts": [
+        "ERC1155Token"
+      ]
+    },
+    "C:\\Users\\rymou\\IdeaProjects\\unicef\\ethereum-meta-transactions\\react-meta-transactions\\examples\\MutiSig_v1.1.1_dev2\\contracts\\interfaces\\ERC1155TokenReceiver.sol": {
+      "lastModificationDate": 1619696063946,
+      "contentHash": "88606cb535886d62a15def4348423cfe",
+      "sourceName": "contracts/interfaces/ERC1155TokenReceiver.sol",
+      "solcConfig": {
+        "version": "0.5.14",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0 <0.7.0"
+      ],
+      "artifacts": [
+        "ERC1155TokenReceiver"
+      ]
+    },
+    "C:\\Users\\rymou\\IdeaProjects\\unicef\\ethereum-meta-transactions\\react-meta-transactions\\examples\\MutiSig_v1.1.1_dev2\\contracts\\handler\\DefaultCallbackHandler.sol": {
+      "lastModificationDate": 1619696063879,
+      "contentHash": "b27de7321fdb4275b95215004f3bff48",
+      "sourceName": "contracts/handler/DefaultCallbackHandler.sol",
+      "solcConfig": {
+        "version": "0.5.14",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "../interfaces/ERC1155TokenReceiver.sol",
+        "../interfaces/ERC721TokenReceiver.sol",
+        "../interfaces/ERC777TokensRecipient.sol"
+      ],
+      "versionPragmas": [
+        ">=0.5.0 <0.7.0"
+      ],
+      "artifacts": [
+        "DefaultCallbackHandler"
+      ]
+    },
+    "C:\\Users\\rymou\\IdeaProjects\\unicef\\ethereum-meta-transactions\\react-meta-transactions\\examples\\MutiSig_v1.1.1_dev2\\contracts\\interfaces\\ERC721TokenReceiver.sol": {
+      "lastModificationDate": 1619696063940,
+      "contentHash": "b85cd392da8f7b5965a1bcb802d4ddd6",
+      "sourceName": "contracts/interfaces/ERC721TokenReceiver.sol",
+      "solcConfig": {
+        "version": "0.5.14",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0 <0.7.0"
+      ],
+      "artifacts": [
+        "ERC721TokenReceiver"
+      ]
+    },
+    "C:\\Users\\rymou\\IdeaProjects\\unicef\\ethereum-meta-transactions\\react-meta-transactions\\examples\\MutiSig_v1.1.1_dev2\\contracts\\interfaces\\ERC777TokensRecipient.sol": {
+      "lastModificationDate": 1619696063950,
+      "contentHash": "bb4017e721f0d98401b03ee7522c82d3",
+      "sourceName": "contracts/interfaces/ERC777TokensRecipient.sol",
+      "solcConfig": {
+        "version": "0.5.14",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0 <0.7.0"
+      ],
+      "artifacts": [
+        "ERC777TokensRecipient"
+      ]
+    },
+    "C:\\Users\\rymou\\IdeaProjects\\unicef\\ethereum-meta-transactions\\react-meta-transactions\\examples\\MutiSig_v1.1.1_dev2\\contracts\\proxies\\PayingProxy.sol": {
+      "lastModificationDate": 1619696063903,
+      "contentHash": "9dc0abeb3b1353c7ba23cd3855f9f21c",
+      "sourceName": "contracts/proxies/PayingProxy.sol",
+      "solcConfig": {
+        "version": "0.5.14",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "../common/SecuredTokenTransfer.sol",
+        "./DelegateConstructorProxy.sol"
+      ],
+      "versionPragmas": [
+        ">=0.5.0 <0.7.0"
+      ],
+      "artifacts": [
+        "PayingProxy"
+      ]
+    },
+    "C:\\Users\\rymou\\IdeaProjects\\unicef\\ethereum-meta-transactions\\react-meta-transactions\\examples\\MutiSig_v1.1.1_dev2\\contracts\\proxies\\DelegateConstructorProxy.sol": {
+      "lastModificationDate": 1619696063916,
+      "contentHash": "a1789f7b172f6c26507c32c2c07da50e",
+      "sourceName": "contracts/proxies/DelegateConstructorProxy.sol",
+      "solcConfig": {
+        "version": "0.5.14",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "./GnosisSafeProxy.sol"
+      ],
+      "versionPragmas": [
+        ">=0.5.0 <0.7.0"
+      ],
+      "artifacts": [
+        "DelegateConstructorProxy"
+      ]
+    },
+    "C:\\Users\\rymou\\IdeaProjects\\unicef\\ethereum-meta-transactions\\react-meta-transactions\\examples\\MutiSig_v1.1.1_dev2\\contracts\\proxies\\GnosisSafeProxy.sol": {
+      "lastModificationDate": 1619696063906,
+      "contentHash": "4f0a0d66aeea7b832ac5a9f800541a3b",
+      "sourceName": "contracts/proxies/GnosisSafeProxy.sol",
+      "solcConfig": {
+        "version": "0.5.14",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0 <0.7.0"
+      ],
+      "artifacts": [
+        "GnosisSafeProxy",
+        "IProxy"
+      ]
+    },
+    "C:\\Users\\rymou\\IdeaProjects\\unicef\\ethereum-meta-transactions\\react-meta-transactions\\examples\\MutiSig_v1.1.1_dev2\\contracts\\proxies\\IProxyCreationCallback.sol": {
+      "lastModificationDate": 1619698857269,
+      "contentHash": "9cbec9c8065821dbccb46bc631315e9d",
+      "sourceName": "contracts/proxies/IProxyCreationCallback.sol",
+      "solcConfig": {
+        "version": "0.5.14",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "./GnosisSafeProxy.sol"
+      ],
+      "versionPragmas": [
+        ">=0.5.0 <0.7.0"
+      ],
+      "artifacts": [
+        "IProxyCreationCallback"
+      ]
+    },
+    "C:\\Users\\rymou\\IdeaProjects\\unicef\\ethereum-meta-transactions\\react-meta-transactions\\examples\\MutiSig_v1.1.1_dev2\\contracts\\proxies\\GnosisSafeProxyFactory.sol": {
+      "lastModificationDate": 1619698857273,
+      "contentHash": "28cdddb9c3563282d4fea942a2e5b805",
+      "sourceName": "contracts/proxies/GnosisSafeProxyFactory.sol",
+      "solcConfig": {
+        "version": "0.5.14",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "./GnosisSafeProxy.sol",
+        "./IProxyCreationCallback.sol"
+      ],
+      "versionPragmas": [
+        ">=0.5.0 <0.7.0"
+      ],
+      "artifacts": [
+        "GnosisSafeProxyFactory"
+      ]
+    },
+    "C:\\Users\\rymou\\IdeaProjects\\unicef\\ethereum-meta-transactions\\react-meta-transactions\\examples\\MutiSig_v1.1.1_dev2\\contracts\\modules\\SocialRecoveryModule.sol": {
+      "lastModificationDate": 1619696063896,
+      "contentHash": "95bd39bdacc0b48a80897485f7d7fdbf",
+      "sourceName": "contracts/modules/SocialRecoveryModule.sol",
+      "solcConfig": {
+        "version": "0.5.14",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "../base/Module.sol",
+        "../base/ModuleManager.sol",
+        "../base/OwnerManager.sol",
+        "../common/Enum.sol"
+      ],
+      "versionPragmas": [
+        ">=0.5.0 <0.7.0"
+      ],
+      "artifacts": [
+        "SocialRecoveryModule"
+      ]
+    },
+    "C:\\Users\\rymou\\IdeaProjects\\unicef\\ethereum-meta-transactions\\react-meta-transactions\\examples\\MutiSig_v1.1.1_dev2\\contracts\\modules\\DailyLimitModule.sol": {
+      "lastModificationDate": 1619696063890,
+      "contentHash": "f34ee04fd17a7f77baff3d576f64fb58",
+      "sourceName": "contracts/modules/DailyLimitModule.sol",
+      "solcConfig": {
+        "version": "0.5.14",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "../base/Module.sol",
+        "../base/ModuleManager.sol",
+        "../base/OwnerManager.sol",
+        "../common/Enum.sol"
+      ],
+      "versionPragmas": [
+        ">=0.5.0 <0.7.0"
+      ],
+      "artifacts": [
+        "DailyLimitModule"
+      ]
+    },
+    "C:\\Users\\rymou\\IdeaProjects\\unicef\\ethereum-meta-transactions\\react-meta-transactions\\examples\\MutiSig_v1.1.1_dev2\\contracts\\libraries\\CreateAndAddModules.sol": {
+      "lastModificationDate": 1619696063934,
+      "contentHash": "b16fbcddccbdd96855ea56c7e6d1797e",
+      "sourceName": "contracts/libraries/CreateAndAddModules.sol",
+      "solcConfig": {
+        "version": "0.5.14",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "../base/Module.sol"
+      ],
+      "versionPragmas": [
+        ">=0.5.0 <0.7.0"
+      ],
+      "artifacts": [
+        "CreateAndAddModules"
+      ]
+    },
+    "C:\\Users\\rymou\\IdeaProjects\\unicef\\ethereum-meta-transactions\\react-meta-transactions\\examples\\MutiSig_v1.1.1_dev2\\contracts\\common\\EtherPaymentFallback.sol": {
+      "lastModificationDate": 1619696063870,
+      "contentHash": "beb7aaac7a991c5340a8727253b98757",
+      "sourceName": "contracts/common/EtherPaymentFallback.sol",
+      "solcConfig": {
+        "version": "0.5.14",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0 <0.7.0"
+      ],
+      "artifacts": [
+        "EtherPaymentFallback"
+      ]
+    },
+    "C:\\Users\\rymou\\IdeaProjects\\unicef\\ethereum-meta-transactions\\react-meta-transactions\\examples\\MutiSig_v1.1.1_dev2\\contracts\\libraries\\CreateCall.sol": {
+      "lastModificationDate": 1619696063930,
+      "contentHash": "8d35a977c924158787f7671cc2aee329",
+      "sourceName": "contracts/libraries/CreateCall.sol",
+      "solcConfig": {
+        "version": "0.5.14",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0 <0.7.0"
+      ],
+      "artifacts": [
+        "CreateCall"
+      ]
+    },
+    "C:\\Users\\rymou\\IdeaProjects\\unicef\\ethereum-meta-transactions\\react-meta-transactions\\examples\\MutiSig_v1.1.1_dev2\\contracts\\libraries\\MultiSend.sol": {
+      "lastModificationDate": 1619696063927,
+      "contentHash": "9007984eff78e9b32a4feb09189f393d",
+      "sourceName": "contracts/libraries/MultiSend.sol",
+      "solcConfig": {
+        "version": "0.5.14",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0 <0.7.0"
+      ],
+      "artifacts": [
+        "MultiSend"
+      ]
+    },
+    "C:\\Users\\rymou\\IdeaProjects\\unicef\\ethereum-meta-transactions\\react-meta-transactions\\examples\\MutiSig_v1.1.1_dev2\\contracts\\Migrations.sol": {
+      "lastModificationDate": 1619696063960,
+      "contentHash": "d6990cbbbca7706f1e3cb5c37ce2a795",
+      "sourceName": "contracts/Migrations.sol",
+      "solcConfig": {
+        "version": "0.5.14",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0 <0.7.0"
+      ],
+      "artifacts": [
+        "Migrations"
+      ]
+    },
+    "C:\\Users\\rymou\\IdeaProjects\\unicef\\ethereum-meta-transactions\\react-meta-transactions\\examples\\MutiSig_v1.1.1_dev2\\contracts\\mocks\\Token.sol": {
+      "lastModificationDate": 1619696063844,
+      "contentHash": "c66b1ba996a5fc6415d3423c39b789a8",
+      "sourceName": "contracts/mocks/Token.sol",
+      "solcConfig": {
+        "version": "0.5.14",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "@gnosis.pm/mock-contract/contracts/MockContract.sol"
+      ],
+      "versionPragmas": [
+        ">=0.5.0 <0.7.0"
+      ],
+      "artifacts": [
+        "Token"
+      ]
+    },
+    "C:\\Users\\rymou\\IdeaProjects\\unicef\\ethereum-meta-transactions\\react-meta-transactions\\examples\\MutiSig_v1.1.1_dev2\\node_modules\\@gnosis.pm\\mock-contract\\contracts\\MockContract.sol": {
+      "lastModificationDate": 1619697090234,
+      "contentHash": "eba235f858625fbbb19b2edf26d66ec9",
+      "sourceName": "@gnosis.pm/mock-contract/contracts/MockContract.sol",
+      "solcConfig": {
+        "version": "0.5.14",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.5.0"
+      ],
+      "artifacts": [
+        "MockContract",
+        "MockInterface"
+      ]
+    },
+    "C:\\Users\\rymou\\IdeaProjects\\unicef\\ethereum-meta-transactions\\react-meta-transactions\\examples\\MutiSig_v1.1.1_dev2\\contracts\\Verifier.sol": {
+      "lastModificationDate": 1619879668910,
+      "contentHash": "6469cecd198fa3107105a0c5104adb22",
+      "sourceName": "contracts/Verifier.sol",
+      "solcConfig": {
+        "version": "0.5.14",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.5.0 <0.9.0"
+      ],
+      "artifacts": [
+        "Verifier"
+      ]
+    },
+    "C:\\Users\\rymou\\IdeaProjects\\unicef\\ethereum-meta-transactions\\react-meta-transactions\\examples\\MutiSig_v1.1.1_dev2\\node_modules\\hardhat\\console.sol": {
+      "lastModificationDate": 1620389014814,
+      "contentHash": "cc4777addd464ea56fa35b1c45df0591",
+      "sourceName": "hardhat/console.sol",
+      "solcConfig": {
+        "version": "0.5.14",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.4.22 <0.9.0"
+      ],
+      "artifacts": [
+        "console"
+      ]
+    }
+  }
+}
