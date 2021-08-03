@@ -62,13 +62,13 @@ Interested to contribute to this project? These are the steps to follow.
 
 ### Fork this repository
 
-<img align="right" width="300" src="./contributions/fork.png" alt="fork this repository" />
+<img width="300" src="./contributions/fork.png" alt="fork this repository" />
 
 Fork this repository by clicking on the fork button on the top of this page. This will create a copy of this repository in your account.
 
 ### Clone the repository
 
-<img align="right" width="300" src="./contributions/clone.png" alt="clone this repository" />
+<img width="300" src="./contributions/clone.png" alt="clone this repository" />
 
 Now clone the forked repository to your machine. Go to your GitHub account, open the forked repository, click on the clone button and then click the *copy to clipboard* icon.
 
